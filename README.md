@@ -12,7 +12,7 @@ This pipeline has been built for [www.beyondtracks.com](https://www.beyondtracks
 
 # Features
 
- - **Access-Control-Allow-Origin Header** The upstream feed lacks the this header meaning web applications aren't able to use the feed directly. The sample crontab file allows you to reduce and host the Beachwatch data and serve it with your own HTTP server to add this header.
+ - **Access-Control-Allow-Origin Header** The upstream feed lacks the this header meaning web applications aren't able to use the feed directly. The sample crontab file allows you to reduce and host the Beachwatch data and serve it with your own HTTP server to add this header. This issue was reported to OEH on the 24th Nov 2015 with the reply that they will follow up with their digital strategy people and will advise once they have responded.
  - **Drop unneeded or duplicate properties**
  - **Coordinate Precision** Practically beach markers won't be more than 10m in accuracy so limiting to 4 decimal places will suffice.
  - **Unpack Overloaded fields** The upstream feed overloads properties into the `Categories` field. These key value is exploded out to make it easier to read in applications.
