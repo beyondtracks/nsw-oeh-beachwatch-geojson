@@ -17,6 +17,18 @@ This pipeline has been built for [www.beyondtracks.com](https://www.beyondtracks
  - **Coordinate Precision** Practically beach markers won't be more than 10m in accuracy so limiting to 4 decimal places will suffice.
  - **Unpack Overloaded fields** The upstream feed overloads properties into the `Categories` field. These key value is exploded out to make it easier to read in applications.
 
+# Usage
+
+Install the Node dependencies with:
+
+    yarn install
+
+Run the script with:
+
+    ./bin/nsw-oeh-beachwatch-geojson nsw-oeh-beachwatch.geojson
+
+This will download the upstream feed, process it and save the resulting GeoJSON file at `nsw-oeh-beachwatch.geojson`.
+
 # Warranty
 
 The use of information in the Beachwatch feed can affect peoples health.
