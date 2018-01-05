@@ -1,5 +1,5 @@
 {
-  "name": "nsw-oeh-beachwatch-geojson",
+  "name": "@beyondtracks/nsw-oeh-beachwatch-geojson",
   "version": "1.0.0",
   "description": "Developer friendly NSW OEH Beachwatch GeoJSON Feed",
   "main": "index.js",
