@@ -1,0 +1,2 @@
+# update every 60 minutes
+*/60 *  *   *   *  root  nsw-oeh-beachwatch-geojson /srv/www/nsw-oeh-beachwatch.geojson
