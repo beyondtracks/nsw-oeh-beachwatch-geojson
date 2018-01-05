@@ -1,0 +1,21 @@
+{
+  "name": "nsw-oeh-beachwatch-geojson",
+  "version": "1.0.0",
+  "description": "Developer friendly NSW OEH Beachwatch GeoJSON Feed",
+  "main": "index.js",
+  "author": "Andrew Harvey <andrew@alantgeo.com.au>",
+  "license": "MIT",
+  "repository": "github:beyondtracks/nsw-oeh-beachwatch-geojson",
+  "scripts": {
+    "geojsonhint": "./bin/nsw-oeh-beachwatch-geojson nsw-oeh-beachwatch.geojson; geojsonhint < nsw-oeh-beachwatch.geojson"
+  },
+  "dependencies": {
+    "@turf/helpers": "^5.1.5",
+    "geojson-precision": "^0.4.0",
+    "object.entries": "^1.0.4",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "@mapbox/geojsonhint": "^2.0.1"
+  }
+}
