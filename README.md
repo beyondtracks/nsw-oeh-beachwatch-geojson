@@ -2,7 +2,7 @@
 
 The NSW Office of Environment and Heritage (OEH) [publishes a JSON feed of swimming suitability](http://www.environment.nsw.gov.au/beachmapp/Data) as part of [Beachwatch](http://www.environment.nsw.gov.au/beachmapp/), this project aims to make that feed more developer friendly.
 
-You can either build this application into your own pipeline or use the hosted URL at https://www.beyondtracks.com/contrib/nsw-oeh-beachwatch.geojson (no service availability guarantees!).
+You can either build this application into your own pipeline or use the hosted URL at https://www.beyondtracks.com/contrib/nsw-oeh-beachwatch.geojson (no service availability guarantees!), [preview it at geojson.io](http://geojson.io/#data=data:text/x-url,https://www.beyondtracks.com/contrib/nsw-oeh-beachwatch.geojson).
 
 _NSW OEH Beachwatch Data is © State of New South Wales and Office of Environment and Heritage 2018. Licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0)._
 
