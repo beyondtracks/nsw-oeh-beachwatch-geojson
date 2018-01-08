@@ -2,37 +2,44 @@
 
 const fs = require('fs');
 const request = require('request');
+const async = require('async');
 const NSWOEHBeachwatchGeoJSON = require('../');
 
 if (process.argv.length < 3) {
     throw 'Usage: nsw-oeh-beachwatch-geojson <nsw-oeh-beachwatch.geojson>';
     process.exit(1);
 }
-const upstreamFeedURL = 'http://www.environment.nsw.gov.au/beachmapp/Data';
+const upstreamFeedURLs = [
+    'http://www.environment.nsw.gov.au/beachapp/SydneyBulletin.xml',
+    'http://www.environment.nsw.gov.au/beachapp/OceanBulletin.xml',
+    'http://www.environment.nsw.gov.au/beachapp/BotanyBulletin.xml',
+    'http://www.environment.nsw.gov.au/beachapp/PittwaterBulletin.xml',
+    'http://www.environment.nsw.gov.au/beachapp/HunterBulletin.xml',
+    'http://www.environment.nsw.gov.au/beachapp/CentralcoastBulletin.xml',
+    'http://www.environment.nsw.gov.au/beachapp/IllawarraBulletin.xml'
+];
 const outputFile = process.argv[2];
 
-request(upstreamFeedURL, function (err, res, body) {
-
-    // check for any errors in the HTTP request
-    if (err || !res || res.statusCode !== 200) {
-        if (err) console.error(err);
-        if (res) console.error('Status Code: ' + res.statusCode);
-        throw 'Error retrieving feed';
-        process.exit(1);
-    }
-
-    // parse the upstream GeoJSON
-    var geojson;
-    try {
-        geojson = JSON.parse(body);
-    } catch (Error) {
-        throw 'Error parsing JSON response body';
-        process.exit(1);
-    }
-
+async.parallelLimit(upstreamFeedURLs.map(getFeed), 4, function (err, georssContents) {
     // convert to a GeoJSON feed
-    var geoJSON = NSWOEHBeachwatchGeoJSON.clean(geojson)
-
-    // save GeoJSON to a file
-    fs.writeFileSync(outputFile, JSON.stringify(geoJSON), 'utf8');
+    NSWOEHBeachwatchGeoJSON.convert(georssContents, function(err, geoJSON) {
+        // save GeoJSON to a file
+        fs.writeFileSync(outputFile, JSON.stringify(geoJSON), 'utf8');
+    });
 });
+
+function getFeed(url) {
+    return function(cb) {
+        request(url, function (err, res, body) {
+            // check for any errors in the HTTP request
+            if (err || !res || res.statusCode !== 200) {
+                if (err) console.error(err);
+                if (res) console.error('Status Code: ' + res.statusCode);
+                throw 'Error retrieving feed';
+                process.exit(1);
+            }
+
+            cb(err, body);
+        });
+    };
+}
